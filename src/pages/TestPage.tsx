@@ -1,5 +1,15 @@
+import { Button } from "@chakra-ui/react";
+
 const TestPage = () => {
-  return <p>Hello World</p>;
+  return (
+    <Button
+      onClick={() => {
+        console.log("Hello World");
+      }}
+    >
+      Clear Local Storage
+    </Button>
+  );
 };
 
 export default TestPage;

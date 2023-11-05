@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
-import TaskItem, { Task } from "../components/TaskItem";
+import TaskItem from "../components/TaskItem";
+import Task from "../entities/Task";
 
 const TestPage = () => {
   const [task, setTask] = useState<Task>({

@@ -1,4 +1,6 @@
-export interface Task {
+interface Task {
   label: string;
   done: boolean;
 }
+
+export default Task;

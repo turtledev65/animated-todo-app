@@ -1,6 +1,6 @@
 import { Checkbox, HStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { Task } from "../entities/Task";
+import Task from "../entities/Task";
 import AnimatedTaskLabel from "./AnimatedTaskLabel";
 
 interface TaskItemProps {

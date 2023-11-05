@@ -1,22 +1,24 @@
 import { Checkbox, HStack, Icon } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { FiTrash2 } from "react-icons/fi";
+import TaskItemsContext from "../context/TaskItemsContext";
 import Task from "../entities/Task";
 import AnimatedTaskLabel from "./AnimatedTaskLabel";
 import SwipeableBox from "./SwipeableBox";
 
-interface TaskItemProps {
-  task: Task;
-  onToggle: () => void;
-  onDelete: () => void;
-}
-
 const AnimatedHStack = motion(HStack);
 
-const TaskItem = ({ task, onToggle, onDelete }: TaskItemProps) => {
+interface TaskItemProps {
+  task: Task;
+}
+
+const TaskItem = ({ task }: TaskItemProps) => {
+  const { dispatch } = useContext(TaskItemsContext);
+
   return (
     <SwipeableBox
-      onSwipe={onDelete}
+      onSwipe={() => dispatch({ type: "REMOVE", task })}
       backElement={
         <AnimatedHStack
           w="full"
@@ -38,7 +40,11 @@ const TaskItem = ({ task, onToggle, onDelete }: TaskItemProps) => {
         px={2}
         backgroundColor={"gray.800"}
       >
-        <Checkbox size="lg" isChecked={task.done} onChange={() => onToggle()} />
+        <Checkbox
+          size="lg"
+          isChecked={task.done}
+          onChange={() => dispatch({ type: "TOGGLE", task })}
+        />
         <AnimatedTaskLabel label={task.label} done={task.done} />
       </AnimatedHStack>
     </SwipeableBox>

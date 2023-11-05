@@ -13,7 +13,7 @@ const AnimatedBox = motion(Box);
 
 const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
-  const threshold = -SCREEN_WIDTH * 1.5;
+  const threshold = -SCREEN_WIDTH * 0.4;
 
   return (
     <AnimatedBox width="full" position="relative">
@@ -26,9 +26,9 @@ const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
           left={0}
           zIndex={-10}
           exit={{
-            translateX: -SCREEN_WIDTH!,
+            translateX: -SCREEN_WIDTH,
             transition: {
-              delay: 0.25,
+              delay: 0.15,
               duration: 0.1,
             },
           }}
@@ -47,7 +47,7 @@ const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
           if (info.offset.x < threshold) onSwipe();
         }}
         exit={{
-          translateX: -SCREEN_WIDTH!,
+          translateX: -SCREEN_WIDTH,
           transition: { duration: 0.2 },
         }}
       >

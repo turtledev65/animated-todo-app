@@ -18,16 +18,23 @@ const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
   return (
     <AnimatedBox width="full" position="relative">
       {backElement && (
-        <Box
+        <AnimatedBox
           position="absolute"
           top={0}
           bottom={0}
           right={0}
           left={0}
           zIndex={-10}
+          exit={{
+            translateX: -SCREEN_WIDTH!,
+            transition: {
+              delay: 0.25,
+              duration: 0.1,
+            },
+          }}
         >
           {backElement}
-        </Box>
+        </AnimatedBox>
       )}
       <AnimatedBox
         drag="x"
@@ -36,11 +43,12 @@ const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
           left: 0,
         }}
         dragElastic={0.2}
-        onDrag={(_, info) => {
-          console.log(info.offset.x);
-        }}
         onDragEnd={(_, info) => {
           if (info.offset.x < threshold) onSwipe();
+        }}
+        exit={{
+          translateX: -SCREEN_WIDTH!,
+          transition: { duration: 0.2 },
         }}
       >
         {children}

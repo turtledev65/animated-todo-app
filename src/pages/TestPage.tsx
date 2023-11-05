@@ -1,11 +1,20 @@
-import { SimpleGrid } from "@chakra-ui/react";
-import ColorModeSwitch from "../components/ColorModeSwitch";
+import { Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import TaskItem, { Task } from "../components/TaskItem";
 
 const TestPage = () => {
+  const [task, setTask] = useState<Task>({
+    label: "Finaly finish something",
+    done: false,
+  });
+
   return (
-    <SimpleGrid placeItems="center" height={"100vh"}>
-      <ColorModeSwitch />
-    </SimpleGrid>
+    <Flex direction="column" height="100vh" justify="center" align="center">
+      <TaskItem
+        task={task}
+        onToggleDone={() => setTask({ ...task, done: !task.done })}
+      />
+    </Flex>
   );
 };
 

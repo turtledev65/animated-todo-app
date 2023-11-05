@@ -7,6 +7,7 @@ const theme = extendTheme({
       body: {
         transitionProperty: "all",
         transitionDuration: "normal",
+        overflow: "hidden",
       },
     },
   },

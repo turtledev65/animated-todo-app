@@ -1,11 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-interface WindowDimensions {
-  width: number;
-  height: number;
-}
-
-// TODO: Rewrite using refs so it doesen't trigger unecesary re-renders
 const getWindowDimensions = () => {
   return {
     width: window.innerWidth,
@@ -14,20 +8,23 @@ const getWindowDimensions = () => {
 };
 
 const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState<WindowDimensions>();
+  const windowDimensionsRef = useRef(getWindowDimensions());
 
   useEffect(() => {
-    setWindowDimensions(getWindowDimensions());
-    window.addEventListener("resize", () =>
-      setWindowDimensions(getWindowDimensions()),
+    window.addEventListener(
+      "resize",
+      () => (windowDimensionsRef.current = getWindowDimensions()),
     );
-
-    return window.removeEventListener("resize", () =>
-      setWindowDimensions(getWindowDimensions()),
+    return window.removeEventListener(
+      "resize",
+      () => (windowDimensionsRef.current = getWindowDimensions()),
     );
   }, []);
 
-  return { width: windowDimensions?.width, height: windowDimensions?.height };
+  return {
+    width: windowDimensionsRef.current.width,
+    height: windowDimensionsRef.current.height,
+  };
 };
 
 export default useWindowDimensions;

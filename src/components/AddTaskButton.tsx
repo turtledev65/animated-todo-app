@@ -20,7 +20,7 @@ const AddTaskButton = () => {
           type: "ADD",
           task: {
             id: generateUniqueKey(),
-            label: " ",
+            label: "",
             done: false,
           },
         })

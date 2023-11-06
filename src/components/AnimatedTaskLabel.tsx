@@ -4,12 +4,17 @@ import { Variants, motion } from "framer-motion";
 interface AnimatedTaskLabelProps {
   label: string;
   done: boolean;
+  onClick: () => void;
 }
 
 const AnimatedText = motion(Text);
 const AnimatedBox = motion(Box);
 
-const AnimatedTaskLabel = ({ label, done }: AnimatedTaskLabelProps) => {
+const AnimatedTaskLabel = ({
+  label,
+  done,
+  onClick,
+}: AnimatedTaskLabelProps) => {
   const theme = useTheme();
   const gray = theme.colors.gray[500];
   const white = theme.colors.white;
@@ -51,6 +56,7 @@ const AnimatedTaskLabel = ({ label, done }: AnimatedTaskLabelProps) => {
       animate={done ? "complete" : "incomplete"}
       variants={labelVariants}
       position="relative"
+      onClick={onClick}
     >
       <AnimatedBox
         variants={lineVariants}

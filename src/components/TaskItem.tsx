@@ -1,6 +1,6 @@
-import { Box, Checkbox, HStack, Icon } from "@chakra-ui/react";
+import { Box, Checkbox, HStack, Icon, Input } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
 import TaskItemsContext from "../context/TaskItemsContext";
 import Task from "../entities/Task";
@@ -16,6 +16,18 @@ interface TaskItemProps {
 
 const TaskItem = ({ task }: TaskItemProps) => {
   const { dispatch } = useContext(TaskItemsContext);
+  const [isEditing, setIsEditing] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // TODO: Add data validation so users can't just add empty items
+  const handleEditTask = () => {
+    dispatch({
+      type: "EDIT",
+      task,
+      newText: inputRef.current?.value ?? "",
+    });
+    setIsEditing(!isEditing);
+  };
 
   return (
     <AnimatedBox layout>
@@ -47,7 +59,29 @@ const TaskItem = ({ task }: TaskItemProps) => {
             isChecked={task.done}
             onChange={() => dispatch({ type: "TOGGLE", task })}
           />
-          <AnimatedTaskLabel label={task.label} done={task.done} />
+          {isEditing ? (
+            <form
+              onSubmit={event => {
+                event.preventDefault();
+                handleEditTask();
+              }}
+            >
+              <Input
+                ref={inputRef}
+                variant="unstyled"
+                fontSize="xl"
+                defaultValue={task.label}
+                onBlur={handleEditTask}
+                autoFocus
+              />
+            </form>
+          ) : (
+            <AnimatedTaskLabel
+              label={task.label}
+              done={task.done}
+              onClick={() => setIsEditing(!isEditing)}
+            />
+          )}
         </AnimatedHStack>
       </SwipeableBox>
     </AnimatedBox>

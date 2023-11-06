@@ -12,8 +12,17 @@ interface RemoveAction {
   type: "REMOVE";
   task: Task;
 }
+interface EditAction {
+  type: "EDIT";
+  task: Task;
+  newText: string;
+}
 
-export type TaskItemsAction = AddAction | RemoveAction | ToggleAction;
+export type TaskItemsAction =
+  | AddAction
+  | RemoveAction
+  | ToggleAction
+  | EditAction;
 
 const taskItemsReducer = (
   taskItems: Task[],
@@ -26,6 +35,10 @@ const taskItemsReducer = (
     );
   if (action.type === "REMOVE")
     return taskItems.filter(task => task !== action.task);
+  if (action.type === "EDIT")
+    return taskItems.map(task =>
+      task === action.task ? { ...task, label: action.newText.trim() } : task,
+    );
 
   return taskItems;
 };

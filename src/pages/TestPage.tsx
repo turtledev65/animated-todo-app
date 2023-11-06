@@ -1,21 +1,24 @@
-import { Flex } from "@chakra-ui/react";
-import { useState } from "react";
-import TaskItem from "../components/TaskItem";
-import Task from "../entities/Task";
+import { Box, Flex } from "@chakra-ui/react";
+import AddTaskButton from "../components/AddTaskButton";
+import TaskList from "../components/TaskList";
+import TaskItemsProvider from "../context/TaskItemsProvider";
 
 const TestPage = () => {
-  const [task, setTask] = useState<Task>({
-    label: "Finaly finish something",
-    done: false,
-  });
-
   return (
-    <Flex direction="column" height="100vh" justify="center" align="center">
-      <TaskItem
-        task={task}
-        onToggleDone={() => setTask({ ...task, done: !task.done })}
-      />
-    </Flex>
+    <TaskItemsProvider>
+      <Flex
+        direction="column"
+        height="100vh"
+        justify="center"
+        align="center"
+        overflow="hidden"
+      >
+        <TaskList />
+        <Box pos="absolute" right={2} bottom={2}>
+          <AddTaskButton />
+        </Box>
+      </Flex>
+    </TaskItemsProvider>
   );
 };
 

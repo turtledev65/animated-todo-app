@@ -28,19 +28,22 @@ const taskItemsReducer = (
   taskItems: Task[],
   action: TaskItemsAction,
 ): Task[] => {
-  if (action.type === "ADD") return [action.task, ...taskItems];
-  if (action.type === "TOGGLE")
-    return taskItems.map(task =>
-      task === action.task ? { ...task, done: !task.done } : task,
-    );
-  if (action.type === "REMOVE")
-    return taskItems.filter(task => task !== action.task);
-  if (action.type === "EDIT")
-    return taskItems.map(task =>
-      task === action.task ? { ...task, label: action.newText.trim() } : task,
-    );
-
-  return taskItems;
+  switch (action.type) {
+    case "ADD":
+      return [action.task, ...taskItems];
+    case "REMOVE":
+      return taskItems.filter(task => task !== action.task);
+    case "TOGGLE":
+      return taskItems.map(task =>
+        task === action.task ? { ...task, done: !task.done } : task,
+      );
+    case "EDIT":
+      return taskItems.map(task =>
+        task === action.task ? { ...task, label: action.newText.trim() } : task,
+      );
+    default:
+      return taskItems;
+  }
 };
 
 export default taskItemsReducer;

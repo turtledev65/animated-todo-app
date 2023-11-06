@@ -1,4 +1,4 @@
-import { List, ListItem } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 import { useContext } from "react";
 import TaskItemsContext from "../context/TaskItemsContext";
@@ -7,17 +7,14 @@ import TaskItem from "./TaskItem";
 const TaskList = () => {
   const { taskItems } = useContext(TaskItemsContext);
 
-  // BUG: Animations are not working
   return (
-    <List width="full">
+    <Box width="full">
       <AnimatePresence>
-        {taskItems.map((task, index) => (
-          <ListItem key={index}>
-            <TaskItem task={task} />
-          </ListItem>
+        {taskItems.map(task => (
+          <TaskItem key={task.id} task={task} />
         ))}
       </AnimatePresence>
-    </List>
+    </Box>
   );
 };
 

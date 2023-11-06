@@ -2,7 +2,7 @@ import Task from "../entities/Task";
 
 interface AddAction {
   type: "ADD";
-  newTask: Task;
+  task: Task;
 }
 interface ToggleAction {
   type: "TOGGLE";
@@ -19,7 +19,7 @@ const taskItemsReducer = (
   taskItems: Task[],
   action: TaskItemsAction,
 ): Task[] => {
-  if (action.type === "ADD") return [...taskItems, action.newTask];
+  if (action.type === "ADD") return [action.task, ...taskItems];
   if (action.type === "TOGGLE")
     return taskItems.map(task =>
       task === action.task ? { ...task, done: !task.done } : task,

@@ -9,7 +9,7 @@ const TaskList = () => {
 
   return (
     <Box width="full">
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence>
         {taskItems.map(task => (
           <TaskItem key={task.id} task={task} />
         ))}

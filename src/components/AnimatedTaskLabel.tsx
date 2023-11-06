@@ -22,31 +22,28 @@ const AnimatedTaskLabel = ({
   // animates the margin of the text
   const labelVariants: Variants = {
     complete: {
-      marginLeft: ["0px", "8px", "0px"],
-      transition: {
-        when: "beforeChildren",
-        duration: 0.2,
-        delayChildren: 0.3,
-      },
+      marginLeft: ["0px", "9px", "0px"],
+      transition: { duration: 0.4 },
     },
-    incomplete: {
-      marginLeft: 0,
-    },
+    incomplete: { marginLeft: 0 },
   };
 
   // changes the color of the text
-  const textVariatns: Variants = {
+  const textVariants: Variants = {
     complete: {
       color: gray,
+      transition: { delay: 0.6 },
     },
-    incomplete: {
-      color: white,
-    },
+    incomplete: { color: white },
   };
 
   // animates the line crossing the text
   const lineVariants: Variants = {
-    complete: { width: "100%", backgroundColor: gray },
+    complete: {
+      width: "100%",
+      backgroundColor: gray,
+      transition: { duration: 0.4, backgroundColor: { delay: 0.6 } },
+    },
     incomplete: { width: 0, backgroundColor: "#fff" },
   };
 
@@ -60,11 +57,11 @@ const AnimatedTaskLabel = ({
     >
       <AnimatedBox
         variants={lineVariants}
-        height="1px"
+        height="2px"
         position="absolute"
         top="50%"
       />
-      <AnimatedText variants={textVariatns} fontSize="xl">
+      <AnimatedText variants={textVariants} fontSize="xl">
         {label}
       </AnimatedText>
     </AnimatedBox>

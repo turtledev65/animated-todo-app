@@ -4,7 +4,7 @@ import { HiOutlinePlus } from "react-icons/hi";
 import TaskItemsContext from "../context/TaskItemsContext";
 import generateUniqueKey from "../utils/generateUniqueKey";
 
-const AddTaskButton = () => {
+const AddTaskButton = (props: any) => {
   const { dispatch } = useContext(TaskItemsContext);
 
   return (
@@ -25,6 +25,7 @@ const AddTaskButton = () => {
           },
         })
       }
+      {...props}
     />
   );
 };

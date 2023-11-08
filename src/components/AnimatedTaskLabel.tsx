@@ -23,7 +23,7 @@ const AnimatedTaskLabel = ({
   const labelVariants: Variants = {
     complete: {
       marginLeft: ["0px", "9px", "0px"],
-      transition: { duration: 0.4 },
+      transition: { duration: 0.3 },
     },
     incomplete: { marginLeft: 0 },
   };
@@ -32,7 +32,7 @@ const AnimatedTaskLabel = ({
   const textVariants: Variants = {
     complete: {
       color: gray,
-      transition: { delay: 0.6 },
+      transition: { delay: 0.8 },
     },
     incomplete: { color: white },
   };
@@ -42,7 +42,7 @@ const AnimatedTaskLabel = ({
     complete: {
       width: "100%",
       backgroundColor: gray,
-      transition: { duration: 0.4, backgroundColor: { delay: 0.6 } },
+      transition: { duration: 0.3, backgroundColor: { delay: 0.8 } },
     },
     incomplete: { width: 0, backgroundColor: "#fff" },
   };

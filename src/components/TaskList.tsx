@@ -8,7 +8,7 @@ const TaskList = () => {
   const { taskItems } = useContext(TaskItemsContext);
 
   return (
-    <Box width="full">
+    <Box w="full">
       <AnimatePresence>
         {taskItems.map(task => (
           <TaskItem key={task.id} task={task} />

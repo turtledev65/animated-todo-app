@@ -12,7 +12,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import { BsArrowLeftShort } from "react-icons/bs";
+import {
+  BsArrowLeftShort,
+  BsFillInboxFill,
+  BsQuestionLg,
+} from "react-icons/bs";
 import { RxRows } from "react-icons/rx";
 import ColorModeSwitch from "./ColorModeSwitch";
 import NavLinkButton from "./NavLinkButton";
@@ -57,8 +61,18 @@ const Sidebar = () => {
           </DrawerHeader>
 
           <DrawerBody display="flex" flexDir="column" gap="15px">
-            <NavLinkButton to="/" label="Tasks" onClick={onClose} />
-            <NavLinkButton to="/test" label="Test" onClick={onClose} />
+            <NavLinkButton
+              to="/"
+              label="Tasks"
+              icon={BsFillInboxFill}
+              onClick={onClose}
+            />
+            <NavLinkButton
+              to="/test"
+              label="Test"
+              icon={BsQuestionLg}
+              onClick={onClose}
+            />
           </DrawerBody>
 
           <DrawerFooter justifyContent="center">

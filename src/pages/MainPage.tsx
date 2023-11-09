@@ -1,8 +1,11 @@
 import { Box, VStack } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import AddTaskButton from "../components/AddTaskButton";
 import TaskList from "../components/TaskList";
 import TaskItemsProvider from "../context/TaskItemsProvider";
 import useBannerBackground from "../hooks/useBannerBackground";
+
+const AnimatedBox = motion(Box);
 
 const MainPage = () => {
   const { image: bannerImage, color: bannerBgColor } = useBannerBackground();
@@ -19,8 +22,9 @@ const MainPage = () => {
           w="full"
           h="full"
         />
-        <Box
+        <AnimatedBox
           w="full"
+          h="full"
           bg="gray.800"
           pt="20px"
           borderTopRadius="15px"
@@ -29,9 +33,9 @@ const MainPage = () => {
           flex={3}
         >
           <TaskList />
-        </Box>
+          <AddTaskButton pos="fixed" bottom={3} right={3} />
+        </AnimatedBox>
       </VStack>
-      <AddTaskButton pos="absolute" bottom={3} right={3} />
     </TaskItemsProvider>
   );
 };

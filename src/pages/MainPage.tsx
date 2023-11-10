@@ -25,7 +25,7 @@ const MainPage = () => {
         <AnimatedBox
           w="full"
           h="full"
-          bg="gray.800"
+          bg="bg"
           pt="20px"
           borderTopRadius="15px"
           overflowX="hidden"

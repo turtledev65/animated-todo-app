@@ -9,7 +9,9 @@ const AddTaskButton = (props: any) => {
   return (
     <IconButton
       isRound
-      colorScheme="blue"
+      backgroundColor="blue"
+      color="white"
+      _hover={{ backgroundColor: "blue" }}
       aria-label="Add Task"
       size="lg"
       fontSize="3xl"

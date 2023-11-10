@@ -35,25 +35,27 @@ const TaskItem = ({ task }: TaskItemProps) => {
           <AnimatedHStack
             w="full"
             h="full"
-            bg="red.500"
+            bg="red"
             pr={3}
             justifyContent="flex-end"
             alignItems="center"
           >
-            <Icon as={FiTrash2} boxSize={6} />
+            <Icon as={FiTrash2} boxSize={6} color="white" />
           </AnimatedHStack>
         }
       >
         <AnimatedHStack
           w="full"
           h="full"
-          gap={4}
+          gap={3}
           py={2}
           px={2}
-          backgroundColor={"gray.800"}
+          backgroundColor="bg"
         >
           <Checkbox
             size="lg"
+            borderColor="border"
+            iconColor="icon-color"
             isChecked={task.done}
             onChange={() => toggleTask(task)}
           />
@@ -66,6 +68,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
             >
               <Input
                 ref={inputRef}
+                color="text-normal"
                 variant="unstyled"
                 fontSize="xl"
                 defaultValue={task.label}

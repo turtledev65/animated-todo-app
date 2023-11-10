@@ -1,4 +1,4 @@
-import { Box, Text, useTheme } from "@chakra-ui/react";
+import { Box, Text, useToken } from "@chakra-ui/react";
 import { Variants, motion } from "framer-motion";
 
 interface AnimatedTaskLabelProps {
@@ -15,9 +15,8 @@ const AnimatedTaskLabel = ({
   done,
   onClick,
 }: AnimatedTaskLabelProps) => {
-  const theme = useTheme();
-  const gray = theme.colors.gray[500];
-  const white = theme.colors.white;
+  const textCrossedColor = useToken("colors", "text-crossed");
+  const textNormalColor = useToken("colors", "text-normal");
 
   // animates the margin of the text
   const labelVariants: Variants = {
@@ -31,20 +30,20 @@ const AnimatedTaskLabel = ({
   // changes the color of the text
   const textVariants: Variants = {
     complete: {
-      color: gray,
+      color: textCrossedColor,
       transition: { delay: 0.8 },
     },
-    incomplete: { color: white },
+    incomplete: { color: textNormalColor },
   };
 
   // animates the line crossing the text
   const lineVariants: Variants = {
     complete: {
       width: "100%",
-      backgroundColor: gray,
+      backgroundColor: textCrossedColor,
       transition: { duration: 0.3, backgroundColor: { delay: 0.8 } },
     },
-    incomplete: { width: 0, backgroundColor: "#fff" },
+    incomplete: { width: 0, backgroundColor: textNormalColor },
   };
 
   return (

@@ -15,8 +15,10 @@ const NavLinkButton = ({ to, label, icon, onClick }: NavLinkButtonProps) => {
       {({ isActive }) => (
         <Button
           w="full"
-          colorScheme={isActive ? "blue" : "gray"}
+          {...(isActive && { bg: "blue" })}
+          color={isActive ? "text-normal" : "text-secondary"}
           variant={isActive ? "solid" : "unstyled"}
+          _hover={{ backgroundColor: "none" }}
           onClick={onClick}
           display="flex"
           justifyContent="start"

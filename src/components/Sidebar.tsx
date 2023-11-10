@@ -35,7 +35,7 @@ const Sidebar = () => {
         icon={<RxRows />}
         onClick={onOpen}
         pos="absolute"
-        color="white"
+        color="icon-color"
         top={2}
         left={2}
         zIndex={10}
@@ -47,7 +47,7 @@ const Sidebar = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg="bg">
           <DrawerCloseButton as={BsArrowLeftShort} size="lg" />
           <DrawerHeader
             w="full"
@@ -57,7 +57,7 @@ const Sidebar = () => {
             pt="40px"
           >
             <Avatar size="2xl" />
-            <Heading>Username</Heading>
+            <Heading color="text-normal">Username</Heading>
           </DrawerHeader>
 
           <DrawerBody display="flex" flexDir="column" gap="15px">

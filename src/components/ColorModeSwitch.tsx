@@ -7,6 +7,7 @@ const ColorModeSwitch = () => {
   return (
     <Icon
       as={colorMode === "dark" ? FaRegSun : FaRegMoon}
+      color="icon-color"
       boxSize={8}
       onClick={() => toggleColorMode()}
     />

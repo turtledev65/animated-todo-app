@@ -5,7 +5,7 @@ import banner4 from "../assets/list-banners/Saly-43.png";
 import pickRandomItem from "../utils/pickRandomItem";
 
 const bannerImages = [banner1, banner2, banner3, banner4];
-const bannerColors = ["yellow.500", "blue.500", "orange.500", "purple.500"];
+const bannerColors = ["yellow", "blue", "purple"];
 
 const useBannerBackground = () => {
   const storedBannerString = sessionStorage.getItem("banner");

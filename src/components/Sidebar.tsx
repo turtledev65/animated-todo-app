@@ -17,7 +17,7 @@ import {
   BsFillInboxFill,
   BsQuestionLg,
 } from "react-icons/bs";
-import { RxRows } from "react-icons/rx";
+import { RxHamburgerMenu } from "react-icons/rx";
 import ColorModeSwitch from "./ColorModeSwitch";
 import NavLinkButton from "./NavLinkButton";
 
@@ -30,14 +30,15 @@ const Sidebar = () => {
       <IconButton
         variant="unstyled"
         aria-label="Sidebar button"
+        boxSize="auto"
         size="lg"
         fontSize="3xl"
-        icon={<RxRows />}
+        icon={<RxHamburgerMenu />}
         onClick={onOpen}
-        pos="absolute"
-        color="icon-color"
-        top={2}
+        color="white"
+        pos="fixed"
         left={2}
+        top={2}
         zIndex={10}
       />
       <Drawer

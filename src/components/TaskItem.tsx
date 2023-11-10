@@ -55,7 +55,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
           <Checkbox
             size="lg"
             borderColor="border"
-            iconColor="icon-color"
+            iconColor="white"
             isChecked={task.done}
             onChange={() => toggleTask(task)}
           />

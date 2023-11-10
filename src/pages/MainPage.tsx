@@ -33,7 +33,7 @@ const MainPage = () => {
           flex={3}
         >
           <TaskList />
-          <AddTaskButton pos="fixed" bottom={3} right={3} />
+          <AddTaskButton pos="fixed" bottom="25px" right="25px" />
         </AnimatedBox>
       </VStack>
     </TaskItemsProvider>

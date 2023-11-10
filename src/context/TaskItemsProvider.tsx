@@ -7,7 +7,6 @@ interface TaskItemsProviderProps {
 }
 
 const TaskItemsProvider = ({ children }: TaskItemsProviderProps) => {
-  // Testing Items
   const [taskItems, dispatch] = useReducer(taskItemsReducer, []);
 
   return (

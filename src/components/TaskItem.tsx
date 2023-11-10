@@ -1,9 +1,9 @@
 import { Box, Checkbox, HStack, Icon, Input } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
-import TaskItemsContext from "../context/TaskItemsContext";
 import Task from "../entities/Task";
+import useTaskItems from "../hooks/useTaskItems";
 import AnimatedTaskLabel from "./AnimatedTaskLabel";
 import SwipeableBox from "./SwipeableBox";
 
@@ -15,24 +15,22 @@ interface TaskItemProps {
 }
 
 const TaskItem = ({ task }: TaskItemProps) => {
-  const { dispatch } = useContext(TaskItemsContext);
+  const { removeTask, toggleTask, editTask } = useTaskItems();
   const [isEditing, setIsEditing] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // TODO: Add data validation so users can't just add empty items
   const handleEditTask = () => {
-    dispatch({
-      type: "EDIT",
-      task,
-      newText: inputRef.current?.value ?? "",
-    });
-    setIsEditing(!isEditing);
+    const newText = inputRef.current?.value;
+    if (newText) {
+      editTask(task, newText);
+      setIsEditing(!isEditing);
+    }
   };
 
   return (
-    <AnimatedBox layout>
+    <AnimatedBox layout transition={{ type: "spring" }}>
       <SwipeableBox
-        onSwipe={() => dispatch({ type: "REMOVE", task })}
+        onSwipe={() => removeTask(task)}
         backElement={
           <AnimatedHStack
             w="full"
@@ -57,7 +55,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
           <Checkbox
             size="lg"
             isChecked={task.done}
-            onChange={() => dispatch({ type: "TOGGLE", task })}
+            onChange={() => toggleTask(task)}
           />
           {isEditing ? (
             <form

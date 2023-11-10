@@ -48,8 +48,8 @@ const TaskItem = ({ task }: TaskItemProps) => {
           w="full"
           h="full"
           gap={3}
-          py={2}
-          px={2}
+          py="10px"
+          px="15px"
           backgroundColor="bg"
         >
           <Checkbox

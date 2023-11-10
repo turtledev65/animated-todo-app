@@ -45,7 +45,7 @@ const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
           right: 0,
           left: 0,
         }}
-        dragElastic={0.3}
+        dragElastic={{ left: 0.3 }}
         onDragEnd={(_, info) => {
           if (info.offset.x < threshold) onSwipe();
         }}

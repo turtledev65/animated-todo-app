@@ -18,18 +18,17 @@ const Swipeable = ({ children, backElement, onSwipe }: SwipeableBoxProps) => {
   return (
     <AnimatedBox
       width="full"
-      position="relative"
       initial={{ scale: 0 }}
       animate={{ scale: "100%", transition: { type: "spring", bounce: 0.35 } }}
     >
       {backElement && (
         <AnimatedBox
           position="absolute"
-          w="full"
-          h="full"
-          // Hacky fix for the back element being partialy visible in the initial animation.
-          initial={{ visibility: "hidden" }}
-          animate={{ visibility: "visible", transition: { delay: 0.8 } }}
+          // Hacky fix for the back element being bigger than the children during animations
+          top={0.5}
+          left={0}
+          right={0}
+          bottom={0.5}
           zIndex={-10}
           exit={{
             translateX: -SCREEN_WIDTH,

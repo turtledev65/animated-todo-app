@@ -12,11 +12,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import {
-  BsArrowLeftShort,
-  BsFillInboxFill,
-  BsQuestionLg,
-} from "react-icons/bs";
+import { BsArrowLeftShort, BsFillInboxFill } from "react-icons/bs";
+import { HiOutlineInformationCircle } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import ColorModeSwitch from "./ColorModeSwitch";
 import NavLinkButton from "./NavLinkButton";
@@ -69,9 +66,9 @@ const Sidebar = () => {
               onClick={onClose}
             />
             <NavLinkButton
-              to="/test"
-              label="Test"
-              icon={BsQuestionLg}
+              to="/about"
+              label="About"
+              icon={HiOutlineInformationCircle}
               onClick={onClose}
             />
           </DrawerBody>

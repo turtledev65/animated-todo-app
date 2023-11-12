@@ -51,4 +51,5 @@ export default defineConfig({
     host: true,
   },
   plugins: [react(), VitePWA(manifest)],
+  base: "/animated-todo-app/",
 });

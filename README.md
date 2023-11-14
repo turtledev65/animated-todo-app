@@ -54,3 +54,8 @@ And now you can run it using:
 ```sh
 npm run dev
 ```
+
+## Credits
+
+- [Sally 3D Pack](https://www.figma.com/community/file/890095002328610853) - used for the banners
+- [react-icons](https://react-icons.github.io/react-icons/) - used for the icons

@@ -52,7 +52,6 @@ const AboutPage = () => {
             target="_blank"
             leftIcon={<BsGithub />}
             w="full"
-            mt="10px"
           >
             Source Code
           </Button>

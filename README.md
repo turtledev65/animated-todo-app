@@ -1,4 +1,4 @@
-# Beautifuly Animated ToDo App built in React
+# Beautifully Animated ToDo App built in React
 
 You can try it [here](https://turtledev65.github.io/animated-todo-app/)
 
@@ -8,6 +8,26 @@ You can try it [here](https://turtledev65.github.io/animated-todo-app/)
 - [React Router](https://reactrouter.com/en/main) - Routing
 - [ChakraUI](https://chakra-ui.com/) - Component library
 - [Framer Motion](https://www.framer.com/motion/) - Animations
+
+## Project Structure
+
+```
+project root
+├── public
+│   ├── icons - Icons for the PWA
+│   └── favicon.ico - favourite icon
+└── src
+    ├── assets - Banner Images
+    ├── components - UI Components
+    ├── context - Custom context and provider for managing global state
+    ├── entities - Reusable type definitions
+    ├── hooks - Custom hooks
+    ├── pages - Components that render the pages
+    ├── reducers - Reducers for managing complex state
+    ├── utils - Utility functions
+    ├── main.tsx - Entry point
+    └── routes.tsx - Router definition
+```
 
 ## How to Run
 

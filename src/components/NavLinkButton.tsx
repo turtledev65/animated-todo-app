@@ -25,7 +25,7 @@ const NavLinkButton = ({ to, label, icon, onClick }: NavLinkButtonProps) => {
           gap="10px"
           p="20px"
         >
-          <Icon as={icon} boxSize={6} />
+          {icon && <Icon as={icon} boxSize={6} />}
           <Text fontSize="xl">{label}</Text>
         </Button>
       )}

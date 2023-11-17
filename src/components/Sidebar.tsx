@@ -20,6 +20,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import ColorModeSwitch from "./ColorModeSwitch";
+import LogoutButton from "./LogoutButton";
 import NavLinkButton from "./NavLinkButton";
 
 const Sidebar = () => {
@@ -85,14 +86,18 @@ const Sidebar = () => {
           </DrawerBody>
 
           <DrawerFooter display="flex" gap="10px" px="15px">
-            <Button
-              w="full"
-              bg="blue"
-              _hover={{ bg: "blue" }}
-              onClick={() => navigate("/login")}
-            >
-              <Link to="/login">Login</Link>
-            </Button>
+            {user ? (
+              <LogoutButton />
+            ) : (
+              <Button
+                w="full"
+                bg="blue"
+                _hover={{ bg: "blue" }}
+                onClick={() => navigate("/login")}
+              >
+                <Link to="/login">Login</Link>
+              </Button>
+            )}
             <ColorModeSwitch />
           </DrawerFooter>
         </DrawerContent>

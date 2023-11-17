@@ -3,6 +3,7 @@ import AboutPage from "./pages/AboutPage";
 import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
+import RegisterPage from "./pages/RegisterPage";
 
 const router = createHashRouter([
   {
@@ -14,6 +15,7 @@ const router = createHashRouter([
     ],
   },
   { path: "login", element: <LoginPage /> },
+  { path: "register", element: <RegisterPage /> },
 ]);
 
 export default router;

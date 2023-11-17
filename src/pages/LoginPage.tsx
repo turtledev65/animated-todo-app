@@ -41,7 +41,7 @@ const LoginPage = () => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          const email = passwordRef.current?.value;
+          const email = emailRef.current?.value;
           const password = passwordRef.current?.value;
 
           if (email && password)

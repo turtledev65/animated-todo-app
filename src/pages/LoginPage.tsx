@@ -1,17 +1,17 @@
 import {
   Button,
+  Link as ChakraLink,
   FormControl,
   FormErrorMessage,
   IconButton,
   Input,
-  Link,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { signInWithEmailAndPassword as signIn } from "firebase/auth";
 import { useRef, useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 
 const LoginPage = () => {
@@ -98,9 +98,9 @@ const LoginPage = () => {
           </Button>
           <Text fontSize="lg" mt="20px">
             Don't have an account?{" "}
-            <Link color="blue" href="register">
+            <ChakraLink as={ReactRouterLink} color="blue" to="/register">
               Register
-            </Link>
+            </ChakraLink>
           </Text>
         </VStack>
       </form>

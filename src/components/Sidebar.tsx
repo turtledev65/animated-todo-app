@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -15,12 +16,14 @@ import { useRef } from "react";
 import { BsArrowLeftShort, BsFillInboxFill } from "react-icons/bs";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { auth } from "../../firebase.config.ts";
 import ColorModeSwitch from "./ColorModeSwitch";
 import NavLinkButton from "./NavLinkButton";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
+  const user = auth.currentUser;
 
   return (
     <>
@@ -54,8 +57,12 @@ const Sidebar = () => {
             alignItems="center"
             pt="40px"
           >
-            <Avatar size="2xl" />
-            <Heading color="text-normal">Username</Heading>
+            {user && (
+              <>
+                <Avatar size="2xl" src={user.photoURL || ""} />
+                <Heading color="text-normal">{user.displayName}</Heading>
+              </>
+            )}
           </DrawerHeader>
 
           <DrawerBody display="flex" flexDir="column" gap="15px">
@@ -73,7 +80,14 @@ const Sidebar = () => {
             />
           </DrawerBody>
 
-          <DrawerFooter justifyContent="center">
+          <DrawerFooter gap={5}>
+            <Button
+              w="full"
+              bg={user ? "red" : "blue"}
+              _hover={{ backgroundColor: "none" }}
+            >
+              {user ? "Sign Out" : "Sign In"}
+            </Button>
             <ColorModeSwitch />
           </DrawerFooter>
         </DrawerContent>

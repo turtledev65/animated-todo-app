@@ -12,18 +12,40 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useRef } from "react";
-import { BsArrowLeftShort, BsFillInboxFill } from "react-icons/bs";
+import { signOut as firebaseSignOut, signInWithPopup } from "firebase/auth";
+import { useEffect, useRef, useState } from "react";
+import { BsArrowLeftShort, BsFillInboxFill, BsGoogle } from "react-icons/bs";
+import { FaSignOutAlt } from "react-icons/fa";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { auth } from "../../firebase.config.ts";
+import { auth, provider } from "../../firebase.config.ts";
 import ColorModeSwitch from "./ColorModeSwitch";
 import NavLinkButton from "./NavLinkButton";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
-  const user = auth.currentUser;
+  const [user, setUser] = useState(auth.currentUser);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const signIn = () => {
+    signInWithPopup(auth, provider)
+      .then(_ => console.log("Authentication Succesful"))
+      .catch(err => console.log("An unexpected error occured: ", err));
+  };
+
+  const signOut = () => {
+    firebaseSignOut(auth)
+      .then(_ => console.log("Sign Out Succesful"))
+      .catch(err => console.log("An unexpected error occured: ", err));
+  };
 
   return (
     <>
@@ -84,7 +106,11 @@ const Sidebar = () => {
             <Button
               w="full"
               bg={user ? "red" : "blue"}
+              rightIcon={user ? <FaSignOutAlt /> : <BsGoogle />}
               _hover={{ backgroundColor: "none" }}
+              onClick={() => {
+                user ? signOut() : signIn();
+              }}
             >
               {user ? "Sign Out" : "Sign In"}
             </Button>

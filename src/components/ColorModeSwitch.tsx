@@ -15,7 +15,7 @@ const ColorModeSwitch = () => {
       icon={colorMode === "dark" ? <FaRegSun /> : <FaRegMoon />}
       color="icon-color"
       whileTap={{ scale: 0.9 }}
-      size="lg"
+      size="3xl"
       fontSize="3xl"
       onClick={() => toggleColorMode()}
     />

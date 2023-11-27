@@ -20,11 +20,17 @@ interface EditAction {
   newText: string;
 }
 
+interface SetAllAction {
+  type: "SET_ALL";
+  tasks: Task[];
+}
+
 export type TaskItemsAction =
   | AddAction
   | RemoveAction
   | ToggleAction
-  | EditAction;
+  | EditAction
+  | SetAllAction;
 
 const taskItemsReducer = (
   taskItems: Task[],
@@ -46,6 +52,8 @@ const taskItemsReducer = (
             ? { ...task, label: action.newText.trim() }
             : task,
         );
+      case "SET_ALL":
+        return action.tasks;
       default:
         return taskItems;
     }

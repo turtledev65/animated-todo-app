@@ -12,13 +12,18 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { signOut as firebaseSignOut, signInWithPopup } from "firebase/auth";
+import {
+  UserInfo,
+  signOut as firebaseSignOut,
+  signInWithPopup,
+} from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { BsArrowLeftShort, BsFillInboxFill, BsGoogle } from "react-icons/bs";
 import { FaSignOutAlt } from "react-icons/fa";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { auth, provider } from "../../firebase.config.ts";
+import { auth, db, provider } from "../../firebase.config.ts";
 import ColorModeSwitch from "./ColorModeSwitch";
 import NavLinkButton from "./NavLinkButton";
 
@@ -34,18 +39,6 @@ const Sidebar = () => {
 
     return () => unsubscribe();
   }, []);
-
-  const signIn = () => {
-    signInWithPopup(auth, provider)
-      .then(_ => console.log("Authentication Succesful"))
-      .catch(err => console.log("An unexpected error occured: ", err));
-  };
-
-  const signOut = () => {
-    firebaseSignOut(auth)
-      .then(_ => console.log("Sign Out Succesful"))
-      .catch(err => console.log("An unexpected error occured: ", err));
-  };
 
   return (
     <>
@@ -120,6 +113,30 @@ const Sidebar = () => {
       </Drawer>
     </>
   );
+};
+
+const signIn = () => {
+  signInWithPopup(auth, provider)
+    .then(res => addUserToDB(res.user))
+    .catch(err => console.log("An unexpected error occured: ", err));
+};
+
+const signOut = () => {
+  firebaseSignOut(auth)
+    .then(_ => console.log("Sign Out Succesful"))
+    .catch(err => console.log("An unexpected error occured: ", err));
+};
+
+const addUserToDB = (user: UserInfo) => {
+  const userRef = doc(db, "users", user.uid);
+
+  getDoc(userRef)
+    .then(docSnapshot => {
+      if (docSnapshot.exists()) return;
+      return setDoc(userRef, { tasks: [] });
+    })
+    .then(() => console.log("User added to the database"))
+    .catch(err => console.log("An unexpected error occurred: ", err));
 };
 
 export default Sidebar;

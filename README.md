@@ -8,6 +8,7 @@ You can try it [here](https://turtledev65.github.io/animated-todo-app/)
 - [React Router](https://reactrouter.com/en/main) - Routing
 - [ChakraUI](https://chakra-ui.com/) - Component library
 - [Framer Motion](https://www.framer.com/motion/) - Animations
+- [Firebase](https://firebase.google.com/) - User auth and database
 
 ## Project Structure
 

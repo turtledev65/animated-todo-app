@@ -60,15 +60,21 @@ const taskItemsReducer = (
   };
 
   const updatedTaskItems = updateTaskItems();
-  updateDB(updatedTaskItems);
+  saveTasks(updatedTaskItems);
   return updatedTaskItems;
 };
 
-const updateDB = async (tasks: Task[]) => {
+const saveTasks = async (tasks: Task[]) => {
   const user = auth.currentUser;
-  if (!user) return;
-  const userRef = doc(collection(db, "users"), user.uid);
-  await updateDoc(userRef, { tasks });
+
+  // save the tasks in local storage
+  if (user) {
+    const userRef = doc(collection(db, "users"), user.uid);
+    await updateDoc(userRef, { tasks });
+  }
+
+  // update the tasks in the firestore doc
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 export default taskItemsReducer;

@@ -9,7 +9,7 @@ const AboutPage = () => {
   return (
     <>
       <meta name="theme-color" content={bgHexColor} />
-      <VStack h="100vh" pos="relative" gap={0} bg="blue">
+      <VStack h="100dvh" pos="relative" gap={0} bg="blue">
         <Box
           backgroundSize="cover"
           backgroundPosition="center"

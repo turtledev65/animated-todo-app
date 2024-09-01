@@ -14,7 +14,7 @@ const MainPage = () => {
   return (
     <>
       <meta name="theme-color" content={bgHexColor} />
-      <VStack h="100vh" pos="relative" gap={0} bg={bannerBgColor}>
+      <VStack h="100dvh" pos="relative" gap={0} bg={bannerBgColor}>
         <Box
           backgroundSize="cover"
           backgroundPosition="top"
